@@ -17,7 +17,7 @@ function sendData() {
   console.log("generate clicked");
   const userInput = document.querySelector("#feelings").value.trim();
   const zipCode = document.querySelector("#zip").value.trim();
-  const url = `http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&APPID=${APPID}`.trim();
+  const url = `http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&APPID=${APPID}&units=imperial`.trim();
   getData(url).then(function(data) {
     console.log("Below data is returned from openweatherapi");
     console.log(data);
@@ -34,9 +34,9 @@ function sendData() {
     updateUI("/projectData").then(function(data) {
       console.log("after promised is resolved in updateUI");
       console.log(data);
-      document.querySelector("#date").textContent = data.date;
-      document.querySelector("#temp").textContent = data.temp;
-      document.querySelector("#content").textContent = data.userinput;
+      document.querySelector("#date").innerHTML = `<h2>${data.date}</h2>`;
+      document.querySelector("#temp").innerHTML = `<h2>${data.temp}</h2>`;
+      document.querySelector("#content").innerHTML = `<h2>${data.userinput}</h2>`;
     });
   });
 }
